@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Poppins } from 'next/font/google';
 import Providers from './providers';
-
+import LoadingScreen from '@/components/general/LoadingScreen';
+import { Suspense } from 'react';
 const poppins = Poppins({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
   subsets: ['latin'],
@@ -21,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${poppins.className} antialiased`}>
-        <Providers>{children}</Providers>
+        <Suspense fallback={<LoadingScreen />}>
+          <Providers>{children}</Providers>
+        </Suspense>
       </body>
     </html>
   );
