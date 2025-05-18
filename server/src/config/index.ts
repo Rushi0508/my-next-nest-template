@@ -19,6 +19,10 @@ export default () => ({
         apiKey: process.env.GEMINI_API_KEY!,
         baseURL: process.env.GEMINI_BASE_URL!,
       },
+      perplexity: {
+        apiKey: process.env.PERPLEXITY_API_KEY!,
+        baseURL: process.env.PERPLEXITY_BASE_URL!,
+      },
     },
   },
 })
