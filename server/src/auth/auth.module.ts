@@ -1,10 +1,8 @@
-import { Module, Global } from '@nestjs/common'
+import { Module } from '@nestjs/common'
 import { PassportModule } from '@nestjs/passport'
 import { JwtModule } from '@nestjs/jwt'
 import { JwtStrategy } from './strategies/jwt.strategy'
-import { JwtAuthGuard } from './guards/jwt-auth.guard'
 import config from '../config'
-@Global()
 @Module({
   imports: [
     PassportModule.register({ defaultStrategy: 'jwt' }),
@@ -13,7 +11,7 @@ import config from '../config'
       signOptions: { expiresIn: config().jwt.expiresIn },
     }),
   ],
-  providers: [JwtStrategy, JwtAuthGuard],
-  exports: [JwtStrategy, JwtAuthGuard],
+  providers: [JwtStrategy],
+  exports: [JwtModule],
 })
 export class AuthModule {}
