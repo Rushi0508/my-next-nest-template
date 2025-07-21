@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+cd server
+npm run format:fix
+npm run lint
+
+cd ../web
+npm run format:fix
+npm run lint
+
+# Re-add only the files that were originally staged and still exist
+git diff --cached --name-only | while read file; do
+    if [ -f "$file" ]; then
+        git add "$file"
+    fi
+done
