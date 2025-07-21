@@ -26,7 +26,7 @@ export default function NotFound() {
           <Link
             title='Home'
             href='/dashboard'
-            className='bg-primary group inline-flex items-center rounded-full px-8 py-3 font-semibold text-white transition-all hover:scale-105 hover:opacity-90 active:scale-95'
+            className='group inline-flex items-center rounded-full bg-primary px-8 py-3 font-semibold text-white transition-all hover:scale-105 hover:opacity-90 active:scale-95'
           >
             <Home className='mr-2 h-5 w-5 transition-transform group-hover:rotate-12' />
             Home
@@ -34,7 +34,7 @@ export default function NotFound() {
           <button
             title='Back'
             onClick={() => router.back()}
-            className='bg-secondary text-primary group inline-flex items-center rounded-full px-8 py-3 font-semibold transition-all hover:scale-105 hover:opacity-90 active:scale-95'
+            className='group inline-flex items-center rounded-full bg-secondary px-8 py-3 font-semibold text-primary transition-all hover:scale-105 hover:opacity-90 active:scale-95'
           >
             <CircleArrowLeft className='mr-2 h-5 w-5 transition-transform group-hover:rotate-12' />
             Back

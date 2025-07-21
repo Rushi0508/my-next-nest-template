@@ -11,7 +11,7 @@ export default function Error() {
   return (
     <div className={`relative flex h-dvh items-center justify-center overflow-hidden`}>
       <div className='relative z-10 text-center'>
-        <div className='bg-primary mb-8 inline-block rounded-full p-4'>
+        <div className='mb-8 inline-block rounded-full bg-primary p-4'>
           <AlertCircle className='h-16 w-16 text-white' />
         </div>
         <h1 className='glitch-text mb-4 text-6xl font-extrabold text-[#1C1C1C]' data-text='Error!'>
@@ -24,14 +24,14 @@ export default function Error() {
         <div className='space-x-4'>
           <button
             onClick={handleReload}
-            className='bg-primary group inline-flex items-center rounded-full px-8 py-3 font-semibold text-white transition-all hover:scale-105 hover:opacity-90 active:scale-95'
+            className='group inline-flex items-center rounded-full bg-primary px-8 py-3 font-semibold text-white transition-all hover:scale-105 hover:opacity-90 active:scale-95'
           >
             <AlertCircle className='mr-2 h-5 w-5 transition-transform group-hover:rotate-12' />
             Try again
           </button>
           <button
             onClick={() => router.back()}
-            className='bg-secondary text-primary group inline-flex items-center rounded-full px-8 py-3 font-semibold transition-all hover:scale-105 hover:opacity-90 active:scale-95'
+            className='group inline-flex items-center rounded-full bg-secondary px-8 py-3 font-semibold text-primary transition-all hover:scale-105 hover:opacity-90 active:scale-95'
           >
             <CircleArrowLeft className='mr-2 h-5 w-5 transition-transform group-hover:rotate-12' />
             Go Back

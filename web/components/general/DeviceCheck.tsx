@@ -9,7 +9,7 @@ export default function DeviceCheck({ children }: { children: React.ReactNode })
 
   useEffect(() => {
     setShouldShow(!isMobile);
-  }, [ isMobile]);
+  }, [isMobile]);
 
   if (!shouldShow) {
     return <MobileDeviceMessage deviceType='mobile' />;

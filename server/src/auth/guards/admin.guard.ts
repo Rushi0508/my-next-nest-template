@@ -1,6 +1,5 @@
 import { ExecutionContext, Injectable, UnauthorizedException, CanActivate } from '@nestjs/common'
 import { RequestUser } from '../dto/request_user.dto'
-import config from 'src/config'
 import { Reflector } from '@nestjs/core'
 
 @Injectable()
