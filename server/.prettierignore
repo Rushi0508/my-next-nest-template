@@ -1,0 +1,8 @@
+node_modules
+dist
+build
+.turbo
+.next
+.env
+apps/server/prisma/client
+*.md

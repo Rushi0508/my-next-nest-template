@@ -58,6 +58,9 @@ importers:
       jsonrepair:
         specifier: ^3.12.0
         version: 3.12.0
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       multer:
         specifier: 1.4.5-lts.2
         version: 1.4.5-lts.2
@@ -107,6 +110,9 @@ importers:
       '@types/jest':
         specifier: ^29.5.14
         version: 29.5.14
+      '@types/lodash':
+        specifier: ^4.17.20
+        version: 4.17.20
       '@types/node':
         specifier: ^22.10.7
         version: 22.14.1
@@ -1855,6 +1861,10 @@ packages:
   '@types/jsonwebtoken@9.0.7':
     resolution:
       { integrity: sha512-ugo316mmTYBl2g81zDFnZ7cfxlut3o+/EQdaP7J8QN2kY6lJ22hmQYCK5EHcJHbrW+dkCGSCPgbG8JtYj6qSrg== }
+
+  '@types/lodash@4.17.20':
+    resolution:
+      { integrity: sha512-H3MHACvFUEiujabxhaI/ImO6gUrd8oOurg7LQtS7mbwIXA/cUqWrvBsaeJ23aZEPk1TAYkurjfMbSELfoCXlGA== }
 
   '@types/methods@1.1.4':
     resolution:
@@ -7901,6 +7911,8 @@ snapshots:
   '@types/jsonwebtoken@9.0.7':
     dependencies:
       '@types/node': 22.14.1
+
+  '@types/lodash@4.17.20': {}
 
   '@types/methods@1.1.4': {}
 

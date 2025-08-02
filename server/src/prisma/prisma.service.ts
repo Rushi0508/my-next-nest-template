@@ -1,5 +1,6 @@
 import { Injectable, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
 import { PrismaClient } from 'prisma/client';
+import { activityLoggerMiddleware } from './prisma-activity-logger.middleware';
 
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
@@ -12,6 +13,7 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
 
   async onModuleInit() {
     try {
+      activityLoggerMiddleware(this);
       await this.$connect();
     } catch (error) {
       console.error('Failed to connect to database:', error);
