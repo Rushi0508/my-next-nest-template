@@ -1,4 +1,4 @@
-import 'dotenv/config'
+import 'dotenv/config';
 
 export const config = {
   port: parseInt(process.env.PORT || '3001', 10),
@@ -36,4 +36,4 @@ export const config = {
       bucket: process.env.AWS_S3_BUCKET!,
     },
   },
-}
+};

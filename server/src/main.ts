@@ -1,16 +1,16 @@
-import { NestFactory } from '@nestjs/core'
-import { AppModule } from './app.module'
-import { BadRequestException, ValidationPipe } from '@nestjs/common'
-import { GlobalExceptionFilter } from './common/filters/global-exception.filter'
-import { DocumentBuilder } from '@nestjs/swagger'
-import { SwaggerModule } from '@nestjs/swagger'
-import { json, urlencoded } from 'express'
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import { BadRequestException, ValidationPipe } from '@nestjs/common';
+import { GlobalExceptionFilter } from './common/filters/global-exception.filter';
+import { DocumentBuilder } from '@nestjs/swagger';
+import { SwaggerModule } from '@nestjs/swagger';
+import { json, urlencoded } from 'express';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule)
+  const app = await NestFactory.create(AppModule);
   app.enableCors({
     origin: '*',
-  })
+  });
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -18,15 +18,15 @@ async function bootstrap() {
         return new BadRequestException({
           message: 'Cannot process request',
           data: errors,
-        })
+        });
       },
     }),
-  )
+  );
 
-  app.useGlobalFilters(new GlobalExceptionFilter())
-  app.use(json({ limit: '10mb' }))
-  app.use(urlencoded({ limit: '10mb', extended: true }))
-  app.setGlobalPrefix('api')
+  app.useGlobalFilters(new GlobalExceptionFilter());
+  app.use(json({ limit: '10mb' }));
+  app.use(urlencoded({ limit: '10mb', extended: true }));
+  app.setGlobalPrefix('api');
 
   const swaggerConfig = new DocumentBuilder()
     .setTitle('Nest JS API')
@@ -41,11 +41,11 @@ async function bootstrap() {
       },
       'api-key',
     )
-    .build()
+    .build();
 
-  const document = SwaggerModule.createDocument(app, swaggerConfig)
-  SwaggerModule.setup('docs', app, document)
+  const document = SwaggerModule.createDocument(app, swaggerConfig);
+  SwaggerModule.setup('docs', app, document);
 
-  await app.listen(process.env.PORT ?? 3000)
+  await app.listen(process.env.PORT ?? 3000);
 }
-bootstrap()
+bootstrap();

@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common'
-import { MailerService } from '@nestjs-modules/mailer'
-import { config } from 'src/common/config'
+import { Injectable } from '@nestjs/common';
+import { MailerService } from '@nestjs-modules/mailer';
+import { config } from 'src/common/config';
 
 /**
  * Service responsible for handling all email-related operations.
@@ -47,20 +47,20 @@ export class MailService {
    * ```
    */
   public async sendMail(options: {
-    to: string | string[]
-    subject: string
-    text?: string
-    html?: string
+    to: string | string[];
+    subject: string;
+    text?: string;
+    html?: string;
   }): Promise<boolean> {
     try {
       await this.mailerService.sendMail({
         from: `"${config.mail.defaults.fromName}" <${config.mail.defaults.from}>`,
         ...options,
-      })
-      return true
+      });
+      return true;
     } catch (error) {
-      console.error('Failed to send email:', error)
-      return false
+      console.error('Failed to send email:', error);
+      return false;
     }
   }
 }

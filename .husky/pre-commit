@@ -9,6 +9,8 @@ cd ../web
 npm run format:fix
 npm run lint
 
+cd ../
+
 # Re-add only the files that were originally staged and still exist
 git diff --cached --name-only | while read file; do
     if [ -f "$file" ]; then

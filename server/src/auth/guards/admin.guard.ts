@@ -1,38 +1,38 @@
-import { ExecutionContext, Injectable, UnauthorizedException, CanActivate } from '@nestjs/common'
-import { RequestUser } from '../dto/request_user.dto'
-import { Reflector } from '@nestjs/core'
-import { config } from 'src/common/config'
+import { ExecutionContext, Injectable, UnauthorizedException, CanActivate } from '@nestjs/common';
+import { RequestUser } from '../dto/request_user.dto';
+import { Reflector } from '@nestjs/core';
+import { config } from 'src/common/config';
 
 @Injectable()
 export class AdminGuard implements CanActivate {
   constructor(private reflector: Reflector) {}
 
   canActivate(context: ExecutionContext): boolean | Promise<boolean> {
-    const request = context.switchToHttp().getRequest()
-    const user = request.user as RequestUser
+    const request = context.switchToHttp().getRequest();
+    const user = request.user as RequestUser;
 
-    const isPublic = this.reflector.getAllAndOverride<boolean>('isPublic', [context.getHandler(), context.getClass()])
+    const isPublic = this.reflector.getAllAndOverride<boolean>('isPublic', [context.getHandler(), context.getClass()]);
     const isApiKeyEnabled = this.reflector.getAllAndOverride<boolean>('isApiKeyEnabled', [
       context.getHandler(),
       context.getClass(),
-    ])
+    ]);
 
     if (isPublic) {
-      return true
+      return true;
     }
 
     if (isApiKeyEnabled) {
-      return true
+      return true;
     }
 
     if (!user || !user.id) {
-      throw new UnauthorizedException('User not authenticated')
+      throw new UnauthorizedException('User not authenticated');
     }
 
     if (!config.admin.emails.includes(user.email)) {
-      throw new UnauthorizedException('User is not authorized to access this resource')
+      throw new UnauthorizedException('User is not authorized to access this resource');
     }
 
-    return true
+    return true;
   }
 }

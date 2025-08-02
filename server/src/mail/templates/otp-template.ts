@@ -16,4 +16,4 @@ export const otpTemplate = (otp: string, validity: number) => `
     </td>
   </tr>
 </table>
-  `
+  `;
