@@ -1,6 +1,7 @@
 import { ExecutionContext, Injectable, UnauthorizedException, CanActivate } from '@nestjs/common'
 import { RequestUser } from '../dto/request_user.dto'
 import { Reflector } from '@nestjs/core'
+import { config } from 'src/common/config'
 
 @Injectable()
 export class AdminGuard implements CanActivate {
@@ -28,7 +29,7 @@ export class AdminGuard implements CanActivate {
       throw new UnauthorizedException('User not authenticated')
     }
 
-    if (user.role !== 'admin') {
+    if (!config.admin.emails.includes(user.email)) {
       throw new UnauthorizedException('User is not authorized to access this resource')
     }
 

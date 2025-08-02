@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { S3Client, PutObjectCommand, DeleteObjectCommand } from '@aws-sdk/client-s3'
-import config from 'src/config'
+import { config } from 'src/common/config'
 
 @Injectable()
 export class AwsService {
@@ -9,13 +9,13 @@ export class AwsService {
 
   constructor() {
     this.s3 = new S3Client({
-      region: config().aws.s3.region,
+      region: config.aws.s3.region,
       credentials: {
-        accessKeyId: config().aws.s3.accessKeyId,
-        secretAccessKey: config().aws.s3.secretAccessKey,
+        accessKeyId: config.aws.s3.accessKeyId,
+        secretAccessKey: config.aws.s3.secretAccessKey,
       },
     })
-    this.bucketName = config().aws.s3.bucket
+    this.bucketName = config.aws.s3.bucket
   }
 
   async uploadFile(file: Express.Multer.File, key: string): Promise<string> {
@@ -27,7 +27,7 @@ export class AwsService {
     })
 
     await this.s3.send(command)
-    return `https://${this.bucketName}.s3.${config().aws.s3.region}.amazonaws.com/${key}`
+    return `https://${this.bucketName}.s3.${config.aws.s3.region}.amazonaws.com/${key}`
   }
 
   async deleteFile(key: string): Promise<void> {

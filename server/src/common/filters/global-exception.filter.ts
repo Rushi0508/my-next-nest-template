@@ -24,12 +24,8 @@ export class GlobalExceptionFilter implements ExceptionFilter {
         errorResponse = { message: exception.message }
       }
 
-      console.log(status)
-      console.log(errorResponse)
       response.status(status).json(typeof errorResponse === 'string' ? { message: errorResponse } : errorResponse)
     } else {
-      console.error('Unexpected error:', exception)
-
       response.status(500).json({
         message: 'Something went wrong',
         data: exception,

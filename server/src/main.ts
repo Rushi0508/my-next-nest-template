@@ -26,6 +26,7 @@ async function bootstrap() {
   app.useGlobalFilters(new GlobalExceptionFilter())
   app.use(json({ limit: '10mb' }))
   app.use(urlencoded({ limit: '10mb', extended: true }))
+  app.setGlobalPrefix('api')
 
   const swaggerConfig = new DocumentBuilder()
     .setTitle('Nest JS API')
