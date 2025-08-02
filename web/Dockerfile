@@ -1,27 +1,11 @@
-FROM node:20 AS base
+FROM node:20-alpine
 
 WORKDIR /app
-
-RUN npm i -g pnpm
-
-COPY package.json pnpm-lock.yaml ./
-
-RUN pnpm install
 
 COPY . .
 
-RUN pnpm build
-
-FROM node:20-alpine3.19 AS release
-
-WORKDIR /app
-
 RUN npm i -g pnpm
 
-COPY --from=base /app/node_modules ./node_modules
+RUN pnpm install
 
-COPY --from=base /app/package.json ./package.json
-
-COPY --from=base /app/.next ./.next
-
-CMD ["pnpm", "start"]
+CMD [ "pnpm", "start" ]   
