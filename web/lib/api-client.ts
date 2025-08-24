@@ -30,9 +30,9 @@ export class ApiClient {
       return response.data;
     } catch (err) {
       if (isAxiosError(err)) {
-        return err.response?.data;
+        throw new Error(err.response?.data.message || 'Something went wrong');
       }
-      throw err;
+      throw new Error('Something went wrong');
     }
   }
 
